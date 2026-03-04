@@ -8,7 +8,6 @@ Brain::Brain(void)
 Brain::~Brain()
 {
     std::cout << "Brain destructor called." << std::endl;
-
 }
 
 Brain& Brain::operator=(Brain const& other)
@@ -38,4 +37,24 @@ Brain::Brain(const Brain& other)
         this->ideas[i] = other.ideas[i];
         i++;
     }
+}
+
+void Brain::getIdeas(int index) const
+{
+    if (index < 0 || index >= 100)
+    {
+        std::cout << "Index out of range." << std::endl;
+        return ;
+    }
+    std::cout << this->ideas[index] << std::endl;
+}
+
+void Brain::setIdeas(int index, std::string idea)
+{
+    if (index < 0 || index >= 100)
+    {
+        std::cout << "Index out of range." << std::endl;
+        return ;
+    }
+    this->ideas[index] = idea;
 }

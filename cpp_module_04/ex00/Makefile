@@ -13,3 +13,7 @@ $(EXEC): $(SRC)
 
 clean:
 		rm -f $(EXEC)
+
+fclean:	clean
+
+re:	fclean all

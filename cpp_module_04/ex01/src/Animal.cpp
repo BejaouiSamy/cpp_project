@@ -24,7 +24,7 @@ std::string Animal::getType(void) const
 Animal::Animal(const Animal& other)
 {
     std::cout << "Copy called." << std::endl;
-    *this = other;
+    *this = other ;
 }
 
 Animal& Animal::operator=(Animal const &other)

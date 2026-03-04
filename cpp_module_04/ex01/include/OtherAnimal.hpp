@@ -14,6 +14,7 @@ class Cat : public Animal
         Cat(const Cat& other);
         Cat& operator=(Cat const& other);
         void makeSound(void) const;
+        Brain* getBrain(void) const;
 };
 
 class Dog : public Animal
@@ -26,6 +27,7 @@ class Dog : public Animal
         Dog(const Dog& other);
         Dog& operator=(Dog const& other);
         void makeSound(void) const;
+        Brain* getBrain(void) const;
 
 };
 
@@ -46,6 +48,5 @@ class WrongCat : public WrongAnimal
         ~WrongCat();
         void makeSound(void) const;
 };
-
 
 #endif

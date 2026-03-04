@@ -16,7 +16,9 @@ Cat::~Cat(void)
 
 void Cat::makeSound(void) const
 {
+    std::cout << std::endl;
     std::cout << "*prrrrrrr* Meow !" << std::endl;
+    std::cout << std::endl;
 }
 
 Cat& Cat::operator=(Cat const& other)
@@ -25,13 +27,20 @@ Cat& Cat::operator=(Cat const& other)
     if (this == &other)
         return (*this);
     Animal::operator=(other);
+    delete this->brain;
+    this->brain = new Brain(*other.brain);
     return (*this);
 }
 
-Cat::Cat(Cat const& other) : Animal()
+Cat::Cat(Cat const& other) : Animal(other)
 {
     std::cout << "Copy called." << std::endl;
-    *this = other;
+    this->brain = new Brain(*other.brain);
+}
+
+Brain* Cat::getBrain(void) const
+{
+    return (this->brain);
 }
 
 // ---Dog
@@ -46,12 +55,13 @@ Dog::~Dog(void)
 {
     std::cout << "Dog destructor called." << std::endl;
     delete brain;
-    std::cout << "Brain supprimé" << std::endl;
 }
 
 void Dog::makeSound(void) const
 {
+    std::cout << std::endl;
     std::cout << "WOUAF WOUAF !" << std::endl;
+    std::cout << std::endl;
 }
 
 Dog& Dog::operator=(Dog const& other)
@@ -65,10 +75,15 @@ Dog& Dog::operator=(Dog const& other)
     return (*this);
 }
 
-Dog::Dog(Dog const& other) : Animal()
+Dog::Dog(Dog const& other) : Animal(other)
 {
     std::cout << "Copy called." << std::endl;
     this->brain = new Brain(*other.brain);
+}
+
+Brain* Dog::getBrain(void) const
+{
+    return (this->brain);
 }
 
 // ---Wrong animal
@@ -84,7 +99,29 @@ WrongAnimal::~WrongAnimal(void)
 
 void WrongAnimal::makeSound(void) const
 {
+    std::cout << std::endl;
     std::cout << "Hello, i'm an animal." << std::endl;
+    std::cout << std::endl;
+}
+
+WrongAnimal::WrongAnimal(WrongAnimal const& other)
+{
+    std::cout << "Copy called." << std::endl;
+    *this = other;
+}
+
+WrongAnimal& WrongAnimal::operator=(WrongAnimal const& other)
+{
+    std::cout << "Assignement operator called." << std::endl;
+    if (this == &other)
+        return (*this);
+    this->type = other.type;
+    return (*this);
+}
+
+std::string WrongAnimal::getType(void) const
+{
+    return (this->type);
 }
 
 // ---Wrong cat
@@ -100,5 +137,23 @@ WrongCat::~WrongCat(void)
 
 void WrongCat::makeSound(void) const
 {
+    std::cout << std::endl;
     std::cout << "MEOW MEOW" << std::endl;
+    std::cout << std::endl;
 }
+
+WrongCat::WrongCat(WrongCat const& other) : WrongAnimal(other)
+{
+    std::cout << "Copy called." << std::endl;
+    *this = other;
+}
+
+WrongCat& WrongCat::operator=(WrongCat const& other)
+{
+    std::cout << "Assignement operator called." << std::endl;
+    if (this == &other)
+        return (*this);
+    WrongAnimal::operator=(other);
+    return (*this);
+}
+

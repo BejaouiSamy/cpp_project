@@ -39,3 +39,23 @@ Brain::Brain(const Brain& other)
         i++;
     }
 }
+
+void Brain::setIdeas(int index, std::string idea)
+{    
+    if (index < 0 || index >= 100)
+    {
+        std::cout << "Index out of range." << std::endl;
+        return ;
+    }
+    this->ideas[index] = idea;
+}
+
+void Brain::getIdeas(int index) const
+{
+    if (index < 0 || index >= 100)
+    {
+        std::cout << "Index out of range." << std::endl;
+        return ;
+    }
+    std::cout << this->ideas[index] << std::endl;
+}

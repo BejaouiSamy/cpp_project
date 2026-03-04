@@ -14,6 +14,7 @@ class Cat : public Animal
         Cat(const Cat& other);
         Cat& operator=(Cat const& other);
         void makeSound(void) const;
+        Brain* getBrain(void) const;
 };
 
 class Dog : public Animal
@@ -26,6 +27,7 @@ class Dog : public Animal
         Dog(const Dog& other);
         Dog& operator=(Dog const& other);
         void makeSound(void) const;
+        Brain* getBrain(void) const;
 
 };
 
@@ -35,8 +37,11 @@ class WrongAnimal
         std::string type;
     public:
         WrongAnimal(void);
+        WrongAnimal(const WrongAnimal& other);
+        WrongAnimal& operator=(WrongAnimal const& other);
         ~WrongAnimal();
         void makeSound(void) const;
+        std::string getType(void) const;
 };
 
 class WrongCat : public WrongAnimal
@@ -45,6 +50,9 @@ class WrongCat : public WrongAnimal
         WrongCat(void);
         ~WrongCat();
         void makeSound(void) const;
+        WrongCat(const WrongCat& other);
+        WrongCat& operator=(WrongCat const& other);
+        
 };
 
 

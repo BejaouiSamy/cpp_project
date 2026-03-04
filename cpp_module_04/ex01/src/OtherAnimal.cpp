@@ -25,13 +25,20 @@ Cat& Cat::operator=(Cat const& other)
     if (this == &other)
         return (*this);
     Animal::operator=(other);
+    delete this->brain;
+    this->brain = new Brain(*other.brain);
     return (*this);
 }
 
-Cat::Cat(Cat const& other) : Animal()
+Cat::Cat(Cat const& other) : Animal(other)
 {
     std::cout << "Copy called." << std::endl;
-    *this = other;
+    this->brain = new Brain(*other.brain);
+}
+
+Brain* Cat::getBrain(void) const 
+{
+    return (this->brain);
 }
 
 // ---Dog
@@ -46,7 +53,6 @@ Dog::~Dog(void)
 {
     std::cout << "Dog destructor called." << std::endl;
     delete brain;
-    std::cout << "Brain supprimé" << std::endl;
 }
 
 void Dog::makeSound(void) const
@@ -65,10 +71,15 @@ Dog& Dog::operator=(Dog const& other)
     return (*this);
 }
 
-Dog::Dog(Dog const& other) : Animal()
+Dog::Dog(Dog const& other) : Animal(other)
 {
     std::cout << "Copy called." << std::endl;
     this->brain = new Brain(*other.brain);
+}
+
+Brain* Dog::getBrain(void) const
+{
+    return (this->brain);
 }
 
 // ---Wrong animal
